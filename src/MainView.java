@@ -46,6 +46,7 @@ public class MainView extends JFrame{
 	
 }
 
+// 버튼 누르면 해당 창이 나타남
 class MainActionListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		

@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+//안녕 난소연이ddidididid
 public class MainView extends JFrame{
 	public MainView() {
 		setTitle("Manage Program");

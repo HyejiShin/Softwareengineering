@@ -46,7 +46,6 @@ public class Main extends JFrame{
 	
 }
 
-//btn 누르면 해당 창으로 이동
 class MainActionListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		

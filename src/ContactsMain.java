@@ -17,14 +17,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Vector;
 
-public class ContactsMain {
-	public static JFrame frame;
+public class ContactsMain extends JFrame{
 	JLabel lbtitle, check;
 	JButton btnwrite;
 	JButton[] contacts_modify_button;
 	JButton[] contacts_delete_button;
-	JPanel panel, ptop, pcontacts, pbottom;
-	JPanel pcenter;
+	JPanel panel, ptop, pcenter, pbottom;
 	JLabel[][] contacts_table_label;
 
 	public static Vector<String> contacts_vec;
@@ -44,9 +42,7 @@ public class ContactsMain {
 	}
 
 	public ContactsMain() {
-
-		frame = new JFrame();
-		frame.setTitle("Manage Contacts");
+		setTitle("Manage Contacts");
 
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
@@ -161,8 +157,6 @@ public class ContactsMain {
 		btnwrite = new JButton("Add");
 		btnwrite.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-		// Add 버튼 눌렀을 때
-		
 		 btnwrite.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e) {
 				 new ContactsCreate();
@@ -170,7 +164,7 @@ public class ContactsMain {
 			 });
 		 
 
-		frame.setBounds(200, 200, 100 * 3 + 100, 38 * contacts_cnt + 60 + 20);
+		setBounds(200, 200, 100 * 3 + 100, 38 * contacts_cnt + 60 + 20);
 		panel.setSize(100 * 3, 35 * contacts_cnt + 50);
 
 		for (int i = 0; i < contacts_cnt; i++) {
@@ -184,18 +178,8 @@ public class ContactsMain {
 
 		pbottom.add(btnwrite);
 		panel.add(pbottom, BorderLayout.PAGE_END);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.add(panel);
-		frame.setVisible(true);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		add(panel);
+		setVisible(true);
 	}
-
-	public static void dispose() {
-		frame.dispose();
-	}
-
-	public static void main(String[] args) {
-		new ContactsMain();
-
-	}
-
 }

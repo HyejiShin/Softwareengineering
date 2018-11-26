@@ -61,13 +61,15 @@ public class ContactsMain {
 		pcenter.setLayout(new GridLayout(0, 3));
 		contacts_vec = new Vector<String>();
 		contacts_vec.add(0, " ");
-		contacts_table_label = new JLabel[20][5];
+		contacts_table_label = new JLabel[20][3];
 
 		contacts_table_label[0][0] = new JLabel("이름");
-		contacts_table_label[0][1] = new JLabel("전화번호");
-		contacts_table_label[0][2] = new JLabel("이메일");
+		contacts_table_label[0][1] = new JLabel("수정");
+		contacts_table_label[0][2] = new JLabel("삭제");
+		/*
 		contacts_table_label[0][3] = new JLabel("");
 		contacts_table_label[0][4] = new JLabel("");
+		*/
 
 		// 파일 입출력 부분
 		try {
@@ -97,6 +99,7 @@ public class ContactsMain {
 
 				contacts_modify_button[i] = new JButton("수정");
 				contacts_modify_button[i].setSize(80, 17);
+				
 				contacts_table_label[i][1] = new JLabel();
 				contacts_table_label[i][1] = new JLabel("                                ");
 				contacts_table_label[i][1].setSize(100, 20);
@@ -158,7 +161,7 @@ public class ContactsMain {
 		panel.add(pcenter, BorderLayout.CENTER);
 
 		pbottom = new JPanel();
-		btnwrite = new JButton("Add");
+		btnwrite = new JButton("");
 		btnwrite.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
 		// Add 버튼 눌렀을 때
@@ -168,7 +171,7 @@ public class ContactsMain {
 				 new ContactsCreate();
 				 }
 			 });
-		 
+		 ///
 
 		frame.setBounds(200, 200, 100 * 3 + 100, 38 * contacts_cnt + 60 + 20);
 		panel.setSize(100 * 3, 35 * contacts_cnt + 50);

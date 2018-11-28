@@ -19,5 +19,5 @@ import javax.swing.text.PlainDocument;
 
 import ContactsCreate.JTextFieldLimit;
 
-public class ContactsCreate {//ŸŸÅ°¤Óµf
+public class ContactsCreate {
 }

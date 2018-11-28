@@ -107,9 +107,9 @@ public class ContactsMain {
 
 		// 파일 입출력 부분
 		try {
-			BufferedReader name_reader = new BufferedReader(new FileReader("contacts_name.txt"));
-			BufferedReader phone_reader = new BufferedReader(new FileReader("contacts_phone.txt"));
-			BufferedReader email_reader = new BufferedReader(new FileReader("contacts_email.txt"));
+			BufferedReader name_reader = new BufferedReader(new FileReader("Softwareengineering//contacts_name.txt"));
+			BufferedReader phone_reader = new BufferedReader(new FileReader("Softwareengineering//contacts_phone.txt"));
+			BufferedReader email_reader = new BufferedReader(new FileReader("Softwareengineering//contacts_email.txt"));
 			
 			String contacts_name_str = "";
 			String contacts_phone_str = "";
@@ -119,8 +119,8 @@ public class ContactsMain {
 			contacts_phone_str = phone_reader.readLine();
 			contacts_email_str = email_reader.readLine();
 			
-			/*
-			while (contacts_name_str != null) {
+			
+			/*while (contacts_name_str != null) {
 				if(contacts_name_str != null)
 					contacts_name.add(contacts_cnt, contacts_name_str);
 				if(contacts_phone_str != null)
@@ -137,19 +137,23 @@ public class ContactsMain {
 				
 				name_cnt++;
 				contacts_cnt = name_cnt;
+				
+				
 			}
 			while (contacts_phone_str != null) {
 				contacts_phone.add(phone_cnt, contacts_phone_str);
 				
 				phone_cnt++;
+				
 			}
 			while (contacts_email_str != null) {
 				contacts_phone.add(email_cnt, contacts_phone_str);
 				
 				email_cnt++;
+				
 			}
 			
-			
+
 			name_reader.close();
 			phone_reader.close();
 			email_reader.close();

@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -18,14 +19,14 @@ import javax.swing.text.PlainDocument;
 
 public class ContactsCreate extends JFrame implements ActionListener{
    
-   JPanel panel, ptitle, ptfname, pbtnsave;
-   JLabel lbtitle;
+   JPanel panel, ptitle, pcontacts, pbtnsave;
+   JLabel lbtitle, lbname, lbphone, lbemail;
    JButton btnsave;
-   JTextField tfname;
+   JTextField tfname, tfphone, tfemail;
    
    public ContactsCreate() {
       setTitle("Contacts Create");
-      setSize(500,300);
+      setSize(450,200);
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       
       panel = new JPanel();
@@ -41,11 +42,46 @@ public class ContactsCreate extends JFrame implements ActionListener{
     
       panel.add(ptitle, BorderLayout.PAGE_START);
       
-      ptfname = new JPanel();
-      tfname = new JTextField(30);
+      pcontacts = new JPanel(new GridLayout(3,2));
+      lbname = new JLabel("이름");
+      lbphone = new JLabel("전화번호");
+      lbemail = new JLabel("이메일");
+      tfname = new JTextField(30);      
+      tfphone = new JTextField(30);      
+      tfemail = new JTextField(30);
+      pcontacts.add(lbname);
+      pcontacts.add(tfname);
+      pcontacts.add(lbphone);
+      pcontacts.add(tfphone);
+      pcontacts.add(lbemail);
+      pcontacts.add(tfemail);
+      panel.add(pcontacts,BorderLayout.CENTER);
+      
+      //plbcontacts = new JPanel(new GridLayout(3,1));
+      /*
+      plbcontacts = new JPanel();
+      
+      plbcontacts.setLayout(new BoxLayout(plbcontacts, BoxLayout.Y_AXIS));
+      lbname = new JLabel("이름");
+      lbphone = new JLabel("전화번호");
+      lbemail = new JLabel("이메일");
+      plbcontacts.add(lbname);
+      plbcontacts.add(lbphone);
+      plbcontacts.add(lbemail);
+      panel.add(plbcontacts,BorderLayout.WEST);
+      
+      ptfcontacts = new JPanel();
+      tfname = new JTextField(30);      
+      tfphone = new JTextField(30);      
+      tfemail = new JTextField(30);
+      ptfcontacts.add(tfname);
+      ptfcontacts.add(tfphone);
+      ptfcontacts.add(tfemail);
+      panel.add(ptfcontacts,BorderLayout.CENTER);
+      */
+      
       //tfmemo.setDocument(new JTextFieldLimit(20));
-      ptfname.add(tfname);
-      panel.add(ptfname,BorderLayout.CENTER);
+      
       
       pbtnsave = new JPanel();
       btnsave = new JButton("저장");
@@ -65,7 +101,7 @@ public class ContactsCreate extends JFrame implements ActionListener{
    }
    
    // 입출력 부분
-   public void memoFileWrite(String data) {
+   public void ContactsNameWrite(String data) {
       try {
          Writer name_create = new BufferedWriter(new FileWriter("contacts_name.txt",true));
          name_create.append(data);
@@ -74,6 +110,24 @@ public class ContactsCreate extends JFrame implements ActionListener{
          System.out.println("오류 발생. 추가되지 않았습니다.");
       }
    }
+   public void ContactsPhoneWrite(String data) {
+	      try {
+	         Writer phone_create = new BufferedWriter(new FileWriter("contacts_phone.txt",true));
+	         phone_create.append(data);
+	         phone_create.close();
+	      }catch(IOException ex) {
+	         System.out.println("오류 발생. 추가되지 않았습니다.");
+	      }
+	   }
+   public void ContactsEmailWrite(String data) {
+	      try {
+	         Writer email_create = new BufferedWriter(new FileWriter("contacts_email.txt",true));
+	         email_create.append(data);
+	         email_create.close();
+	      }catch(IOException ex) {
+	         System.out.println("오류 발생. 추가되지 않았습니다.");
+	      }
+	   }
    
    @Override
    public void actionPerformed(ActionEvent e) {
@@ -82,9 +136,13 @@ public class ContactsCreate extends JFrame implements ActionListener{
       
       
       if(source == btnsave) {
-         String data = tfname.getText()+"\r\n";
+         String str_name = tfname.getText()+"\r\n";
+         String str_phone = tfphone.getText()+"\r\n";
+         String str_email = tfemail.getText()+"\r\n";
          
-         memoFileWrite(data);
+         ContactsNameWrite(str_name);
+         ContactsPhoneWrite(str_phone);
+         ContactsEmailWrite(str_email);
          
          ContactsMain.dispose();
          new ContactsMain();

@@ -91,6 +91,10 @@ public class ContactsMain {
 		pcenter.setLayout(new GridLayout(0, 5));
 		contacts_name = new Vector<String>();
 		contacts_name.add(0, " ");
+		contacts_phone = new Vector<String>();
+		contacts_phone.add(0, " ");
+		contacts_email = new Vector<String>();
+		contacts_email.add(0, " ");
 		contacts_table_label = new JLabel[20][5];
 
 		contacts_table_label[0][0] = new JLabel("이름");
@@ -114,14 +118,37 @@ public class ContactsMain {
 			contacts_name_str = name_reader.readLine();
 			contacts_phone_str = phone_reader.readLine();
 			contacts_email_str = email_reader.readLine();
-
-			while ((contacts_name_str != null) && (contacts_phone_str != null) && (contacts_email_str != null)) {
-				contacts_name.add(contacts_cnt, contacts_name_str);
-				contacts_phone.add(contacts_cnt, contacts_phone_str);
-				contacts_email.add(contacts_cnt, contacts_email_str);
+			
+			/*
+			while (contacts_name_str != null) {
+				if(contacts_name_str != null)
+					contacts_name.add(contacts_cnt, contacts_name_str);
+				if(contacts_phone_str != null)
+					contacts_phone.add(contacts_cnt, contacts_phone_str);
+				if(contacts_email_str != null)
+					contacts_email.add(contacts_cnt, contacts_email_str);
 				
 				contacts_cnt++;
 			}
+			*/
+			int name_cnt =1, phone_cnt = 1, email_cnt = 1;
+			while (contacts_name_str != null) {
+				contacts_name.add(name_cnt, contacts_name_str);
+				
+				name_cnt++;
+				contacts_cnt = name_cnt;
+			}
+			while (contacts_phone_str != null) {
+				contacts_phone.add(phone_cnt, contacts_phone_str);
+				
+				phone_cnt++;
+			}
+			while (contacts_email_str != null) {
+				contacts_phone.add(email_cnt, contacts_phone_str);
+				
+				email_cnt++;
+			}
+			
 			
 			name_reader.close();
 			phone_reader.close();

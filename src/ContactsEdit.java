@@ -16,14 +16,17 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 
-public class ContactsCreate extends JFrame implements ActionListener {
+public class ContactsEdit extends JFrame implements ActionListener {
 	JPanel panel, ptitle, pcontacts, pbtnsave;
 	JLabel lbtitle, lbname, lbphone, lbemail;
 	JButton btnsave;
 	JTextField tfname, tfphone, tfemail;
 
-	public ContactsCreate() {
-		setTitle("Contacts Create");
+	int modify_index;
+
+	public ContactsEdit(int edit_index) {
+		modify_index = edit_index;
+		setTitle("Contacts Edit");
 		setSize(450, 200);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -33,7 +36,7 @@ public class ContactsCreate extends JFrame implements ActionListener {
 		ptitle = new JPanel();
 		ptitle.setLayout(new BoxLayout(ptitle, BoxLayout.Y_AXIS));
 
-		lbtitle = new JLabel("연락처 추가");
+		lbtitle = new JLabel("연락처 수정");
 		lbtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		ptitle.add(lbtitle);
@@ -45,8 +48,11 @@ public class ContactsCreate extends JFrame implements ActionListener {
 		lbphone = new JLabel("전화번호");
 		lbemail = new JLabel("이메일");
 		tfname = new JTextField(30);
+		tfname.setText(ContactsMain.getContactsName(edit_index));
 		tfphone = new JTextField(30);
+		tfphone.setText(ContactsMain.getContactsPhone(edit_index));
 		tfemail = new JTextField(30);
+		tfemail.setText(ContactsMain.getContactsEmail(edit_index));
 		pcontacts.add(lbname);
 		pcontacts.add(tfname);
 		pcontacts.add(lbphone);
@@ -56,7 +62,7 @@ public class ContactsCreate extends JFrame implements ActionListener {
 		panel.add(pcontacts, BorderLayout.CENTER);
 
 		pbtnsave = new JPanel();
-		btnsave = new JButton("저장");
+		btnsave = new JButton("수정");
 		btnsave.addActionListener(this);
 		pbtnsave.add(btnsave);
 		panel.add(pbtnsave, BorderLayout.PAGE_END);
@@ -68,36 +74,60 @@ public class ContactsCreate extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new ContactsCreate();
+
 	}
 
-	// 입출력 부분
-	public void ContactsNameWrite(String data) {
+	public void ContactsNameEdit(String s) {
 		try {
-			Writer name_create = new BufferedWriter(new FileWriter("contacts_name.txt", true));
-			name_create.append(data);
-			name_create.close();
-		} catch (IOException ex) {
-			System.out.println("오류 발생. 추가되지 않았습니다.");
+			Writer name_writer = new BufferedWriter(new FileWriter("contacts_name.txt"));
+			int length = ContactsMain.contacts_name.size();
+
+			for (int i = 1; i < length; i++) {
+				if (i != modify_index) {
+					name_writer.write(ContactsMain.getContactsName(i) + "\r\n");
+				} else {
+					name_writer.write(s);
+				}
+			}
+			name_writer.close();
+		} catch (IOException e1) {
+			System.out.println("오류 발생. 수정되지 않았습니다.");
 		}
 	}
-
-	public void ContactsPhoneWrite(String data) {
+	
+	public void ContactsPhoneEdit(String s) {
 		try {
-			Writer phone_create = new BufferedWriter(new FileWriter("contacts_phone.txt", true));
-			phone_create.append(data);
-			phone_create.close();
-		} catch (IOException ex) {
-			System.out.println("오류 발생. 추가되지 않았습니다.");
+			Writer phone_writer = new BufferedWriter(new FileWriter("contacts_phone.txt"));
+			int length = ContactsMain.contacts_phone.size();
+
+			for (int i = 1; i < length; i++) {
+				if (i != modify_index) {
+					phone_writer.write(ContactsMain.getContactsPhone(i) + "\r\n");
+				} else {
+					phone_writer.write(s);
+				}
+			}
+			phone_writer.close();
+		} catch (IOException e1) {
+			System.out.println("오류 발생. 수정되지 않았습니다.");
 		}
 	}
-
-	public void ContactsEmailWrite(String data) {
+	
+	public void ContactsEmailEdit(String s) {
 		try {
-			Writer email_create = new BufferedWriter(new FileWriter("contacts_email.txt", true));
-			email_create.append(data);
-			email_create.close();
-		} catch (IOException ex) {
-			System.out.println("오류 발생. 추가되지 않았습니다.");
+			Writer email_writer = new BufferedWriter(new FileWriter("contacts_email.txt"));
+			int length = ContactsMain.contacts_email.size();
+
+			for (int i = 1; i < length; i++) {
+				if (i != modify_index) {
+					email_writer.write(ContactsMain.getContactsEmail(i) + "\r\n");
+				} else {
+					email_writer.write(s);
+				}
+			}
+			email_writer.close();
+		} catch (IOException e1) {
+			System.out.println("오류 발생. 수정되지 않았습니다.");
 		}
 	}
 
@@ -111,14 +141,13 @@ public class ContactsCreate extends JFrame implements ActionListener {
 			String str_phone = tfphone.getText() + "\r\n";
 			String str_email = tfemail.getText() + "\r\n";
 
-			ContactsNameWrite(str_name);
-			ContactsPhoneWrite(str_phone);
-			ContactsEmailWrite(str_email);
+			ContactsNameEdit(str_name);
+			ContactsPhoneEdit(str_phone);
+			ContactsEmailEdit(str_email);
 
 			ContactsMain.dispose();
 			new ContactsMain();
 			this.dispose();
-
 		}
 	}
 }

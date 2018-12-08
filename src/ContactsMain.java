@@ -144,9 +144,13 @@ public class ContactsMain {
 				phone_cnt++;
 			}
 			while (contacts_email_str != null) {
-				contacts_phone.add(email_cnt, contacts_phone_str);
+				contacts_email.add(email_cnt, contacts_email_str);
 				
 				email_cnt++;
+				
+				
+				
+				
 			}
 			
 			

@@ -165,9 +165,7 @@ public class ContactsMain {
 
 				contacts_modify_button[i] = new JButton("수정");
 				contacts_modify_button[i].setSize(80, 17);
-				
 				contacts_table_label[i][3] = new JLabel();
-				//contacts_table_label[i][3] = new JLabel("                                ");
 				contacts_table_label[i][3].setSize(300, 20);
 				contacts_table_label[i][3].add(contacts_modify_button[i]);
 
@@ -187,7 +185,6 @@ public class ContactsMain {
 				contacts_delete_button[i] = new JButton("삭제");
 				contacts_delete_button[i].setSize(80, 17);
 				contacts_table_label[i][4] = new JLabel();
-				//contacts_table_label[i][4] = new JLabel("                                ");
 				contacts_table_label[i][4].setSize(100, 20);
 				contacts_table_label[i][4].add(contacts_delete_button[i]);
 				delete_index = i;
@@ -213,7 +210,7 @@ public class ContactsMain {
 				 * 
 				 */
 
-				for (int j = 0; j < 3; j++)
+				for (int j = 0; j < 5; j++)
 					pcenter.add(contacts_table_label[i][j]);
 
 				panel.add(pcenter);

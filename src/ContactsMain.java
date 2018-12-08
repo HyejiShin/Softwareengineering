@@ -107,9 +107,9 @@ public class ContactsMain {
 
 		// 파일 입출력 부분
 		try {
-			BufferedReader name_reader = new BufferedReader(new FileReader("Softwareengineering//contacts_name.txt"));
-			BufferedReader phone_reader = new BufferedReader(new FileReader("Softwareengineering//contacts_phone.txt"));
-			BufferedReader email_reader = new BufferedReader(new FileReader("Softwareengineering//contacts_email.txt"));
+			BufferedReader name_reader = new BufferedReader(new FileReader("contacts_name.txt"));
+			BufferedReader phone_reader = new BufferedReader(new FileReader("contacts_phone.txt"));
+			BufferedReader email_reader = new BufferedReader(new FileReader("contacts_email.txt"));
 			
 			String contacts_name_str = "";
 			String contacts_phone_str = "";

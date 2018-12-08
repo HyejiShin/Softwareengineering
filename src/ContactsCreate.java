@@ -134,7 +134,6 @@ public class ContactsCreate extends JFrame implements ActionListener{
       // TODO Auto-generated method stub
       Object source = e.getSource();
       
-      
       if(source == btnsave) {
          String str_name = tfname.getText()+"\r\n";
          String str_phone = tfphone.getText()+"\r\n";

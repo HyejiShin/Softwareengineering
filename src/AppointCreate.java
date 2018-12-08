@@ -4,19 +4,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Writer;
-import javax.swing.text.AttributeSet;
-
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
-
+//얍!!
 public class AppointCreate extends JFrame implements ActionListener {
 
 	JPanel panel, ptitle, pappoint, pbtnsave;
@@ -31,17 +23,12 @@ public class AppointCreate extends JFrame implements ActionListener {
 
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-
 		ptitle = new JPanel();
 		ptitle.setLayout(new BoxLayout(ptitle, BoxLayout.Y_AXIS));
-
 		lbtitle = new JLabel("약속 추가");
 		lbtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-
 		ptitle.add(lbtitle);
-
 		panel.add(ptitle, BorderLayout.PAGE_START);
-
 		pappoint = new JPanel(new GridLayout(3, 2));
 		lbdate = new JLabel("날짜");
 		lbpersons = new JLabel("참여자");
@@ -101,7 +88,6 @@ public class AppointCreate extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
-
 		if (source == btnsave) {
 			String str_date = tfdate.getText() + "\r\n";
 			String str_persons = tfpersons.getText() + "\r\n";
@@ -114,8 +100,6 @@ public class AppointCreate extends JFrame implements ActionListener {
 			AppointMain.dispose();
 			new AppointMain();
 			this.dispose();
-
 		}
-
 	}
 }

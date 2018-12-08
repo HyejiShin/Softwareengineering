@@ -1,19 +1,10 @@
 import javax.swing.*;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Vector;
 
 public class AppointMain {
@@ -77,13 +68,11 @@ public class AppointMain {
 
 		panel = new JPanel();
 		panel.setLayout(new BorderLayout());
-
 		ptop = new JPanel();
 		lbtitle = new JLabel("Manage Appointment");
 		lbtitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		ptop.add(lbtitle);
 		panel.add(ptop, BorderLayout.PAGE_START);
-
 		pcenter = new JPanel();
 		pcenter.setLayout(new GridLayout(0, 5));
 		appoint_date = new Vector<String>();
@@ -93,7 +82,6 @@ public class AppointMain {
 		appoint_location = new Vector<String>();
 		appoint_location.add(0, " ");
 		appoint_table_label = new JLabel[20][5];
-
 		appoint_table_label[0][0] = new JLabel("약속 날짜");
 		appoint_table_label[0][1] = new JLabel("참여자");
 		appoint_table_label[0][2] = new JLabel("약속 장소");
@@ -136,10 +124,8 @@ public class AppointMain {
 			for (int i = 0; i < 5; i++)
 				pcenter.add(appoint_table_label[0][i]);
 			panel.add(pcenter);
-
 			
 			for (int i = 1; i < appoints_cnt; i++) {
-
 				appoint_table_label[i][0] = new JLabel(appoint_date.elementAt(i));
 				appoint_table_label[i][1] = new JLabel(appoint_persons.elementAt(i));
 				appoint_table_label[i][2] = new JLabel(appoint_location.elementAt(i));
@@ -183,7 +169,6 @@ public class AppointMain {
 				appoint_table_label[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				appoint_table_label[i][j].setVerticalAlignment(SwingConstants.CENTER);
 				appoint_table_label[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-
 			}
 		}
 

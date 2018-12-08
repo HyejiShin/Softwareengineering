@@ -115,42 +115,24 @@ public class ContactsMain {
 			String contacts_phone_str = "";
 			String contacts_email_str = "";
 			
-			contacts_name_str = name_reader.readLine();
-			contacts_phone_str = phone_reader.readLine();
-			contacts_email_str = email_reader.readLine();
-			
-			
-			/*while (contacts_name_str != null) {
-				if(contacts_name_str != null)
-					contacts_name.add(contacts_cnt, contacts_name_str);
-				if(contacts_phone_str != null)
-					contacts_phone.add(contacts_cnt, contacts_phone_str);
-				if(contacts_email_str != null)
-					contacts_email.add(contacts_cnt, contacts_email_str);
-				
-				contacts_cnt++;
-			}
-			*/
 			int name_cnt =1, phone_cnt = 1, email_cnt = 1;
-			while (contacts_name_str != null) {
+			while ((contacts_name_str = name_reader.readLine()) != null) {
 				contacts_name.add(name_cnt, contacts_name_str);
 				
 				name_cnt++;
 				contacts_cnt = name_cnt;
-				
-				
 			}
-			while (contacts_phone_str != null) {
+			
+			while ((contacts_phone_str = phone_reader.readLine()) != null) {
 				contacts_phone.add(phone_cnt, contacts_phone_str);
 				
 				phone_cnt++;
-				
 			}
-			while (contacts_email_str != null) {
-				contacts_phone.add(email_cnt, contacts_phone_str);
+			
+			while ((contacts_email_str = email_reader.readLine()) != null) {
+				contacts_email.add(email_cnt, contacts_email_str);
 				
-				email_cnt++;
-				
+				email_cnt++;	
 			}
 			
 
@@ -185,8 +167,8 @@ public class ContactsMain {
 				contacts_modify_button[i].setSize(80, 17);
 				
 				contacts_table_label[i][3] = new JLabel();
-				//contacts_table_label[i][1] = new JLabel("                                ");
-				contacts_table_label[i][3].setSize(100, 20);
+				//contacts_table_label[i][3] = new JLabel("                                ");
+				contacts_table_label[i][3].setSize(300, 20);
 				contacts_table_label[i][3].add(contacts_modify_button[i]);
 
 				// 수정 버튼 눌러졌을 때 _ 수정 필요

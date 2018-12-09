@@ -22,7 +22,7 @@ public class Main extends JFrame {
 		JButton btntodo = new JButton("2.Manage To-Do list");
 		btntodo.setLocation(100, 250);
 		btntodo.setSize(300, 60);
-		JButton btnappoint = new JButton("3.Manage appointments");
+		JButton btnappoint = new JButton("3.Manage Appointments");
 		btnappoint.setLocation(100, 350);
 		btnappoint.setSize(300, 60);
 
@@ -44,7 +44,6 @@ public class Main extends JFrame {
 	}
 }
 
-//btn 누르면 해당 창으로 이동
 class MainActionListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
@@ -55,7 +54,7 @@ class MainActionListener implements ActionListener {
 		if (b.getText().equals("2.Manage To-Do list"))
 			new ToDoMain();
 
-		if (b.getText().equals("3.Manage appointments"))
+		if (b.getText().equals("3.Manage Appointments"))
 			new AppointMain();
 	}
 }

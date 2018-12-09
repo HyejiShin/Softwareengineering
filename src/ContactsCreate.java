@@ -66,11 +66,9 @@ public class ContactsCreate extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new ContactsCreate();
 	}
 
-	// 입출력 부분
 	public void ContactsNameWrite(String data) {
 		try {
 			Writer name_create = new BufferedWriter(new FileWriter("contacts_name.txt", true));
@@ -101,9 +99,7 @@ public class ContactsCreate extends JFrame implements ActionListener {
 		}
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		Object source = e.getSource();
 
 		if (source == btnsave) {
@@ -118,7 +114,6 @@ public class ContactsCreate extends JFrame implements ActionListener {
 			ContactsMain.dispose();
 			new ContactsMain();
 			this.dispose();
-
 		}
 	}
 }

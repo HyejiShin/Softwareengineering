@@ -18,12 +18,11 @@ import java.util.Vector;
 
 public class ContactsMain {
 	public static JFrame frame;
-	JLabel lbtitle, check;
+	JLabel lbtitle;
 	JButton btncreate;
 	JButton[] contacts_modify_button;
 	JButton[] contacts_delete_button;
-	JPanel panel, ptop, pcontacts, pbottom;
-	JPanel pcenter;
+	JPanel panel, ptop, pcenter, pbottom;
 	JLabel[][] contacts_table_label;
 	public static Vector<String> contacts_name;
 	public static Vector<String> contacts_phone;
@@ -96,8 +95,6 @@ public class ContactsMain {
 		contacts_table_label[0][2] = new JLabel("이메일");
 		contacts_table_label[0][3] = new JLabel("수정");
 		contacts_table_label[0][4] = new JLabel("삭제");
-
-		// 파일 입출력 부분
 		try {
 			BufferedReader name_reader = new BufferedReader(new FileReader("contacts_name.txt"));
 			BufferedReader phone_reader = new BufferedReader(new FileReader("contacts_phone.txt"));
@@ -109,23 +106,20 @@ public class ContactsMain {
 
 			while ((contacts_name_str = name_reader.readLine()) != null) {
 				contacts_name.add(name_cnt, contacts_name_str);
-
 				name_cnt++;
 				contacts_cnt = name_cnt;
 			}
 
 			while ((contacts_phone_str = phone_reader.readLine()) != null) {
 				contacts_phone.add(phone_cnt, contacts_phone_str);
-
 				phone_cnt++;
 			}
 
 			while ((contacts_email_str = email_reader.readLine()) != null) {
 				contacts_email.add(email_cnt, contacts_email_str);
-
-				email_cnt++;
+				email_cnt++;	
 			}
-
+			
 			name_reader.close();
 			phone_reader.close();
 			email_reader.close();
@@ -140,24 +134,13 @@ public class ContactsMain {
 
 			for (int i = 1; i < contacts_cnt; i++) {
 				contacts_table_label[i][0] = new JLabel(contacts_name.elementAt(i));
-				contacts_table_label[i][0].setAlignmentY(Component.LEFT_ALIGNMENT);
-				contacts_table_label[i][0].setSize(300, 20);
-
 				contacts_table_label[i][1] = new JLabel(contacts_phone.elementAt(i));
-				contacts_table_label[i][1].setAlignmentY(Component.LEFT_ALIGNMENT);
-				contacts_table_label[i][1].setSize(300, 20);
-
 				contacts_table_label[i][2] = new JLabel(contacts_email.elementAt(i));
-				contacts_table_label[i][2].setAlignmentY(Component.LEFT_ALIGNMENT);
-				contacts_table_label[i][2].setSize(300, 20);
-
 				contacts_modify_button[i] = new JButton("수정");
 				contacts_modify_button[i].setSize(80, 17);
 				contacts_table_label[i][3] = new JLabel();
-				contacts_table_label[i][3].setSize(300, 20);
 				contacts_table_label[i][3].add(contacts_modify_button[i]);
 
-				// 수정버튼
 				contacts_modify_button[i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
@@ -174,11 +157,9 @@ public class ContactsMain {
 				contacts_delete_button[i] = new JButton("삭제");
 				contacts_delete_button[i].setSize(80, 17);
 				contacts_table_label[i][4] = new JLabel();
-				contacts_table_label[i][4].setSize(100, 20);
 				contacts_table_label[i][4].add(contacts_delete_button[i]);
 				delete_index = i;
 
-				// 삭제 버튼
 				contacts_delete_button[i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
@@ -208,7 +189,6 @@ public class ContactsMain {
 
 				for (int j = 0; j < 5; j++)
 					pcenter.add(contacts_table_label[i][j]);
-
 				panel.add(pcenter);
 			}
 		} catch (IOException e) {
@@ -220,14 +200,12 @@ public class ContactsMain {
 
 		pbottom = new JPanel();
 		btncreate = new JButton("추가");
-		btncreate.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-		// 추가 버튼
 		btncreate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new ContactsCreate();
-			}
-		});
+			 public void actionPerformed(ActionEvent e) {
+				 new ContactsCreate();
+				 }
+			 });
 
 		frame.setBounds(400, 400, 100 * 5 + 100, 38 * contacts_cnt + 60 + 20);
 		panel.setSize(100 * 5, 35 * contacts_cnt + 50);

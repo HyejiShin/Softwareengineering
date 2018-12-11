@@ -45,33 +45,7 @@ public class ToDoCreate extends JFrame implements ActionListener{
       ptodolist.add(lb_description);
       ptodolist.add(tf_description);
       panel.add(ptodolist,BorderLayout.CENTER);
-      
-      //plbcontacts = new JPanel(new GridLayout(3,1));
-      /*
-      plbcontacts = new JPanel();
-      
-      plbcontacts.setLayout(new BoxLayout(plbcontacts, BoxLayout.Y_AXIS));
-      lbname = new JLabel("이름");
-      lbphone = new JLabel("전화번호");
-      lbemail = new JLabel("이메일");
-      plbcontacts.add(lbname);
-      plbcontacts.add(lbphone);
-      plbcontacts.add(lbemail);
-      panel.add(plbcontacts,BorderLayout.WEST);
-      
-      ptfcontacts = new JPanel();
-      tfname = new JTextField(30);      
-      tfphone = new JTextField(30);      
-      tfemail = new JTextField(30);
-      ptfcontacts.add(tfname);
-      ptfcontacts.add(tfphone);
-      ptfcontacts.add(tfemail);
-      panel.add(ptfcontacts,BorderLayout.CENTER);
-      */
-      
-      //tfmemo.setDocument(new JTextFieldLimit(20));
-      
-      
+
       pbtnsave = new JPanel();
       btnsave = new JButton("저장");
       btnsave.addActionListener(this);
@@ -84,15 +58,14 @@ public class ToDoCreate extends JFrame implements ActionListener{
    }
    
    public static void main(String[] args) {
-      // TODO Auto-generated method stub
+
       new ToDoCreate();
       
    }
    
-   // 입출력 부분
    public void StartDateWrite(String data) {
       try {
-         Writer start_date_create = new BufferedWriter(new FileWriter("start_date.txt",true));
+         Writer start_date_create = new BufferedWriter(new FileWriter("todo_start_date.txt",true));
          start_date_create.append(data);
          start_date_create.close();
       }catch(IOException ex) {
@@ -101,7 +74,7 @@ public class ToDoCreate extends JFrame implements ActionListener{
    }
    public void DueDateWrite(String data) {
 	      try {
-	         Writer due_date_create = new BufferedWriter(new FileWriter("due_date.txt",true));
+	         Writer due_date_create = new BufferedWriter(new FileWriter("todo_due_date.txt",true));
 	         due_date_create.append(data);
 	         due_date_create.close();
 	      }catch(IOException ex) {
@@ -110,7 +83,7 @@ public class ToDoCreate extends JFrame implements ActionListener{
 	   }
    public void DescriptionWrite(String data) {
 	      try {
-	         Writer description_create = new BufferedWriter(new FileWriter("description.txt",true));
+	         Writer description_create = new BufferedWriter(new FileWriter("todo_description.txt",true));
 	         description_create.append(data);
 	         description_create.close();
 	      }catch(IOException ex) {
@@ -120,7 +93,7 @@ public class ToDoCreate extends JFrame implements ActionListener{
    
    @Override
    public void actionPerformed(ActionEvent e) {
-      // TODO Auto-generated method stub
+     
       Object source = e.getSource();
       
       
@@ -141,27 +114,4 @@ public class ToDoCreate extends JFrame implements ActionListener{
       
    }
 
-   /*
-   class JTextFieldLimit extends PlainDocument {
-       private int limit;
-       JTextFieldLimit(int limit) {
-         super();
-         this.limit = limit;
-       }
-
-       JTextFieldLimit(int limit, boolean upper) {
-         super();
-         this.limit = limit;
-       }
-
-       public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
-         if (str == null)
-           return;
-
-         if ((getLength() + str.length()) <= limit) {
-           super.insertString(offset, str, attr);
-         }
-       }
-     }
-     */
 }

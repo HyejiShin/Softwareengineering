@@ -89,11 +89,11 @@ public class ToDoMain {
 		todolist_table_label[0][3] = new JLabel("수정");
 		todolist_table_label[0][4] = new JLabel("삭제");
 
-		// 파일 입출력 부분
+		
 		try {
-			BufferedReader start_date_reader = new BufferedReader(new FileReader("start_date.txt"));
-			BufferedReader due_date_reader = new BufferedReader(new FileReader("due_date.txt"));
-			BufferedReader description_reader = new BufferedReader(new FileReader("description.txt"));
+			BufferedReader start_date_reader = new BufferedReader(new FileReader("todo_start_date.txt"));
+			BufferedReader due_date_reader = new BufferedReader(new FileReader("todo_due_date.txt"));
+			BufferedReader description_reader = new BufferedReader(new FileReader("todo_description.txt"));
 			
 			String start_date_str = "";
 			String due_date_str = "";
@@ -133,74 +133,64 @@ public class ToDoMain {
 			panel.add(pcenter);
 
 			for (int i = 1; i < todolist_cnt; i++) {
-
 				todolist_table_label[i][0] = new JLabel(start_date.elementAt(i));
-				todolist_table_label[i][0].setAlignmentY(Component.LEFT_ALIGNMENT);
-				todolist_table_label[i][0].setSize(300, 20);
-
 				todolist_table_label[i][1] = new JLabel(due_date.elementAt(i));
-				todolist_table_label[i][1].setAlignmentY(Component.LEFT_ALIGNMENT);
-				todolist_table_label[i][1].setSize(300, 20);
-				
 				todolist_table_label[i][2] = new JLabel(description.elementAt(i));
-				todolist_table_label[i][2].setAlignmentY(Component.LEFT_ALIGNMENT);
-				todolist_table_label[i][2].setSize(300, 20);
-				
 				todolist_modify_button[i] = new JButton("수정");
 				todolist_modify_button[i].setSize(80, 17);
 				todolist_table_label[i][3] = new JLabel();
-				todolist_table_label[i][3] = new JLabel("                                ");
-				todolist_table_label[i][3].setSize(300, 20);
 				todolist_table_label[i][3].add(todolist_modify_button[i]);
 
-				// 수정 버튼 눌러졌을 때 _ 수정 필요
-				/*
-				 * contacts_modify_button[i].addActionListener(new
-				 * ActionListener() {
-				 * 
-				 * 
-				 * public void actionPerformed(ActionEvent e) { // TODO
-				 * Auto-generated method stub int modify_index=0; for(int
-				 * j=1;j<contacts_cnt;j++) { if(e.getSource()==
-				 * contacts_modify_button[j]) { modify_index = j; } } new
-				 * MemoEdit(modify_index); } });
-				 */
+				todolist_modify_button[i].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						int modify_index = 0;
+						for (int j = 1; j < todolist_cnt; j++) {
+							if (e.getSource() == todolist_modify_button[j]) {
+								modify_index = j;
+							}
+						}
+						new ToDoEdit(modify_index);
+					}
+				});
 
 				todolist_delete_button[i] = new JButton("삭제");
 				todolist_delete_button[i].setSize(80, 17);
 				todolist_table_label[i][4] = new JLabel();
-				todolist_table_label[i][4] = new JLabel("                                ");
-				todolist_table_label[i][4].setSize(100, 20);
 				todolist_table_label[i][4].add(todolist_delete_button[i]);
 				delete_index = i;
 
-				// 삭제 버튼 눌렀을 때 _ 수정 필요
-				/*
-				 * contacts_delete_button[i].addActionListener(new
-				 * ActionListener() { public void actionPerformed(ActionEvent e)
-				 * {
-				 * 
-				 * // TODO Auto-generated method stub try {
-				 * 
-				 * @SuppressWarnings("resource") Writer memo_writer = new
-				 * BufferedWriter(new FileWriter("memo.txt"));
-				 * 
-				 * 
-				 * for(int j=1;j<memo_cnt;j++) {
-				 * if(e.getSource()!=memo_delete_button[j]) {
-				 * memo_writer.write(memo_vec.elementAt(j)+"\r\n"); } }
-				 * memo_writer.close(); } catch(IOException e1) {
-				 * 
-				 * } ContactsMain.dispose(); new ContactsMain(); } });
-				 * 
-				 */
+				todolist_delete_button[i].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						try {
+							@SuppressWarnings("resource")
+							Writer start_date_writer = new BufferedWriter(new FileWriter("todo_start_date.txt"));
+							Writer due_date_writer = new BufferedWriter(new FileWriter("todo_due_date.txt"));
+							Writer description_writer = new BufferedWriter(new FileWriter("todo_description.txt"));
+
+							for (int j = 1; j < todolist_cnt; j++) {
+								if (e.getSource() != todolist_delete_button[j]) {
+									start_date_writer.write(start_date.elementAt(j) + "\r\n");
+									due_date_writer.write(due_date.elementAt(j) + "\r\n");
+									description_writer.write(description.elementAt(j) + "\r\n");
+								}
+							}
+							start_date_writer.close();
+							due_date_writer.close();
+							description_writer.close();
+						} catch (IOException e1) {
+
+						}
+						ToDoMain.dispose();
+						new ToDoMain();
+					}
+				});
 
 				for (int j = 0; j < 5; j++)
 					pcenter.add(todolist_table_label[i][j]);
-
 				panel.add(pcenter);
 			}
-
 		} catch (IOException e) {
 			for (int j = 0; j < 5; j++)
 				pcenter.add(todolist_table_label[0][j]);
@@ -210,16 +200,12 @@ public class ToDoMain {
 
 		pbottom = new JPanel();
 		btncreate = new JButton("추가");
-		btncreate.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-		// Add 버튼 눌렀을 때
-		
 		btncreate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new ToDoCreate();
-			}
-		});
-		 
+			 public void actionPerformed(ActionEvent e) {
+				 new ToDoCreate();
+				 }
+			 });
 
 		frame.setBounds(400, 400, 100 * 5 + 100, 38 * todolist_cnt + 60 + 20);
 		panel.setSize(100 * 5, 35 * todolist_cnt + 50);
@@ -229,7 +215,6 @@ public class ToDoMain {
 				todolist_table_label[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				todolist_table_label[i][j].setVerticalAlignment(SwingConstants.CENTER);
 				todolist_table_label[i][j].setHorizontalAlignment(SwingConstants.CENTER);
-
 			}
 		}
 
@@ -245,8 +230,6 @@ public class ToDoMain {
 	}
 
 	public static void main(String[] args) {
-		new ContactsMain();
-
+		new ToDoMain();
 	}
-
 }

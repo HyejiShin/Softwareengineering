@@ -9,6 +9,7 @@ class AppointTest {
 
 	@Test
 	void testAppointCreate() {
+		int appoint_cnt = 0;
 		int date_cnt = 0;
 		int persons_cnt = 0;
 		int location_cnt = 0;
@@ -38,6 +39,7 @@ class AppointTest {
 			while ((appoint_date_test = date_reader.readLine()) != null) {
 				date_test.add(date_cnt, appoint_date_test);
 				date_cnt++;
+				appoint_cnt = date_cnt;
 			}
 
 			while ((appoint_persons_test = persons_reader.readLine()) != null) {
@@ -61,6 +63,7 @@ class AppointTest {
 	@Test
 	void testContactsEdit() {
 		int modify_index = 1;
+		AppointMain appointmain = new AppointMain();
 		AppointEdit appointedit = new AppointEdit(modify_index);
 
 		Vector<String> date_edit = new Vector<String>();
